@@ -1,6 +1,10 @@
-<html><head><title>Contact - Matthew Fors</title><link href="styles/normalize.css" rel="stylesheet" /><link href="styles/skeleton.css" rel="stylesheet" /><link href="styles/style.css" rel="stylesheet" /></head><body><div class="container"><div class="row nav" style="padding: 20px 0 30px 0"><h5 class="two columns nav-item" onClick="location.href=&apos;about.html&apos;" style="width: 100/12%;">About</h5><h5 class="two columns nav-item" onClick="location.href=&apos;blog.html&apos;" style="width: 100/12%;">Blog</h5><h5 class="two columns nav-item selected-nav" onClick="location.href=&apos;contact.html&apos;" style="width: 100/12%;">Contact</h5><h5 class="six columns right-text bold nav-item" onClick="location.href=&apos;index.html&apos;">(enforser)</h5></div></div><div class="container"><pre><code>[:html
+<html><head><title>Contact - Matthew Fors</title><link href="photos/favicon.ico" rel="shortcut icon" type="image/x-icon" /><link href="styles/normalize.css" rel="stylesheet" /><link href="styles/skeleton.css" rel="stylesheet" /><link href="styles/style.css" rel="stylesheet" /></head><body><div class="container"><div class="row nav" style="padding: 20px 0 30px 0"><h5 class="two columns nav-item" onClick="location.href=&apos;about.html&apos;" style="width: 100/12%;">About</h5><h5 class="two columns nav-item" onClick="location.href=&apos;blog.html&apos;" style="width: 100/12%;">Blog</h5><h5 class="two columns nav-item selected-nav" onClick="location.href=&apos;contact.html&apos;" style="width: 100/12%;">Contact</h5><h5 class="six columns right-text bold nav-item" onClick="location.href=&apos;index.html&apos;">(enforser)</h5></div></div><div class="container"><pre><code>[:html
  [:head
   [:title "Contact - Matthew Fors"]
+  [:link
+   {:rel "shortcut icon",
+    :type "image/x-icon",
+    :href "photos/favicon.ico"}]
   [:link {:rel "stylesheet", :href "styles/normalize.css"}]
   [:link {:rel "stylesheet", :href "styles/skeleton.css"}]
   [:link {:rel "stylesheet", :href "styles/style.css"}]]
@@ -34,13 +38,15 @@
       {:class "row"}
       [:pre
        [:code
-        "\n#\n# How to get in touch:\n#\n     "
-        [:li [:a {:href "mailto:trailcapital@gmail.com"} "E-mail"]]
+        "\n #\n # How to get in touch:\n #\n      "
+        [:li [:a {:href "https://twitter.com/fors_matthew"} "Twitter"]]
+        [:li [:a {:href "https://github.com/enforser"} "Github"]]
         [:li
          [:a
           {:href "https://www.linkedin.com/in/matthew-fors-8b655699/"}
           "LinkedIn"]]
-        [:li [:a {:href "https://github.com/enforser"} "Github"]]]]]]))
+        [:li
+         [:a {:href "mailto:trailcapital@gmail.com"} "E-mail"]]]]]]))
   [:div
    {:class "container"}
    [:a
