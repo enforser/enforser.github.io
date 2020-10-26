@@ -1,0 +1,15 @@
+{
+  "name": "decrypt-zcash",
+  "collaborators": [
+    "enforser <you@example.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "decrypt_zcash_bg.wasm",
+    "decrypt_zcash.js",
+    "decrypt_zcash.d.ts"
+  ],
+  "module": "decrypt_zcash.js",
+  "types": "decrypt_zcash.d.ts",
+  "sideEffects": false
+}
