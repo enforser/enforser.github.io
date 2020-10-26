@@ -1,0 +1,60 @@
+<html><head><title>decrypt-zcash - Matthew Fors</title><link href="styles/normalize.css" rel="stylesheet" /><link href="styles/skeleton.css" rel="stylesheet" /><link href="styles/style.css" rel="stylesheet" /></head><body><div class="container"><div class="row nav" style="padding: 20px 0 30px 0"><h5 class="two columns nav-item" onClick="location.href=&apos;about.html&apos;" style="width: 100/12%;">About</h5><h5 class="two columns nav-item" onClick="location.href=&apos;blog.html&apos;" style="width: 100/12%;">Blog</h5><h5 class="two columns nav-item" onClick="location.href=&apos;contact.html&apos;" style="width: 100/12%;">Contact</h5><h5 class="six columns right-text bold nav-item" onClick="location.href=&apos;index.html&apos;">(enforser)</h5></div></div><div class="container"><pre><code>[:html
+ [:head
+  [:title "decrypt-zcash - Matthew Fors"]
+  [:link {:rel "stylesheet", :href "styles/normalize.css"}]
+  [:link {:rel "stylesheet", :href "styles/skeleton.css"}]
+  [:link {:rel "stylesheet", :href "styles/style.css"}]]
+ [:body
+  [:div
+   {:class "container"}
+   [:div
+    {:class "row nav", :style "padding: 20px 0 30px 0"}
+    [:h5
+     {:class "two columns nav-item",
+      :style "width: 100/12%;",
+      :onClick "location.href='about.html'"}
+     "About"]
+    [:h5
+     {:class "two columns nav-item",
+      :style "width: 100/12%;",
+      :onClick "location.href='blog.html'"}
+     "Blog"]
+    [:h5
+     {:class "two columns nav-item",
+      :style "width: 100/12%;",
+      :onClick "location.href='contact.html'"}
+     "Contact"]
+    [:h5
+     {:class "six columns right-text bold nav-item",
+      :onClick "location.href='index.html'"}
+     "(enforser)"]]]
+  (([:div
+     {:class "container"}
+     [:div {:class "row"} [:h3 "Zcash: Sapling Payment Disclosure"]]
+     [:div
+      {:class "row"}
+      [:p "Raw Transaction"]
+      [:textarea {:id "rawTx", :cols "60"}]
+      [:p "Outgoing Cipher Key"]
+      [:textarea {:id "ock", :cols "40"}]
+      [:br]
+      [:input {:id "decryptForm", :type "submit", :value "Decrypt!"}]]
+     [:br]
+     [:br]
+     [:p {:hidden true, :id "message"}]
+     [:table
+      {:id "results", :hidden true}
+      [:tr [:td "Value"] [:td {:id "zec"}]]
+      [:tr [:td "Address"] [:td {:id "address"}]]
+      [:tr [:td "Memo"] [:td {:id "memo"}]]]
+     [:script
+      {:type "module"}
+      "\n       import init, { greet } from './decrypt-zcash-assets/decrypt_zcash.js';\n       async function decryptOutput() {\n         await init();\n         try {\n             document.getElementById('message').innerHTML = 'Decrypting! Hold tight.';\n             document.getElementById('message').hidden = false;\n             console.log(document.getElementById('rawTx').value)\n             console.log(document.getElementById('ock').value)\n             const parsed = greet(\n               document.getElementById('rawTx').value,\n               document.getElementById('ock').value\n             );\n             const [zatoshis, address, memo] = parsed.split('|', 3);\n             const zec = parseInt(zatoshis, 10) / 100000000 + ' ZEC';\n             const decrypted = {\n               zatoshis,\n               zec,\n               address,\n               memo\n             };\n             console.log(decrypted.memo);\n             document.getElementById('memo').innerHTML = decrypted.memo.length < 1 ? '<i>no memo provided</i>' : decrypted.memo;\n             document.getElementById('zec').innerHTML = decrypted.zec;\n             document.getElementById('address').innerHTML = decrypted.address;\n             document.getElementById('message').hidden = true;\n             document.getElementById('results').hidden = false;\n         } catch (error) {\n           console.error(error);\n           document.getElementById('message').innerHTML = 'Failed to parse transaction';\n           document.getElementById('message').hidden = false;\n         }\n         return false;\n       }\n \n       document.getElementById('decryptForm').addEventListener('click', decryptOutput);\n    "]]))
+  [:div
+   {:class "container"}
+   [:a
+    {:class "twelve columns",
+     :style "text-align: right",
+     :href "/decrypt-zcash-as-code.html"}
+    "Hiccup"]]]]
+</code></pre></div><div class="container"><a class="twelve columns" href="/decrypt-zcash-as-code.html" style="text-align: right">Hiccup</a></div></body></html>

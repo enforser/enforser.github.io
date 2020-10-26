@@ -1,0 +1,37 @@
+<html><head><title>decrypt-zcash - Matthew Fors</title><link href="styles/normalize.css" rel="stylesheet" /><link href="styles/skeleton.css" rel="stylesheet" /><link href="styles/style.css" rel="stylesheet" /></head><body><div class="container"><div class="row nav" style="padding: 20px 0 30px 0"><h5 class="two columns nav-item" onClick="location.href=&apos;about.html&apos;" style="width: 100/12%;">About</h5><h5 class="two columns nav-item" onClick="location.href=&apos;blog.html&apos;" style="width: 100/12%;">Blog</h5><h5 class="two columns nav-item" onClick="location.href=&apos;contact.html&apos;" style="width: 100/12%;">Contact</h5><h5 class="six columns right-text bold nav-item" onClick="location.href=&apos;index.html&apos;">(enforser)</h5></div></div><div class="container"><div class="row"><h3>Zcash: Sapling Payment Disclosure</h3></div><div class="row"><p>Raw Transaction</p><textarea cols="60" id="rawTx"></textarea><p>Outgoing Cipher Key</p><textarea cols="40" id="ock"></textarea><br /><input id="decryptForm" type="submit" value="Decrypt!" /></div><br /><br /><p hidden="hidden" id="message"></p><table hidden="hidden" id="results"><tr><td>Value</td><td id="zec"></td></tr><tr><td>Address</td><td id="address"></td></tr><tr><td>Memo</td><td id="memo"></td></tr></table><script type="module">
+       import init, { greet } from './decrypt-zcash-assets/decrypt_zcash.js';
+       async function decryptOutput() {
+         await init();
+         try {
+             document.getElementById('message').innerHTML = 'Decrypting! Hold tight.';
+             document.getElementById('message').hidden = false;
+             console.log(document.getElementById('rawTx').value)
+             console.log(document.getElementById('ock').value)
+             const parsed = greet(
+               document.getElementById('rawTx').value,
+               document.getElementById('ock').value
+             );
+             const [zatoshis, address, memo] = parsed.split('|', 3);
+             const zec = parseInt(zatoshis, 10) / 100000000 + ' ZEC';
+             const decrypted = {
+               zatoshis,
+               zec,
+               address,
+               memo
+             };
+             console.log(decrypted.memo);
+             document.getElementById('memo').innerHTML = decrypted.memo.length < 1 ? '<i>no memo provided</i>' : decrypted.memo;
+             document.getElementById('zec').innerHTML = decrypted.zec;
+             document.getElementById('address').innerHTML = decrypted.address;
+             document.getElementById('message').hidden = true;
+             document.getElementById('results').hidden = false;
+         } catch (error) {
+           console.error(error);
+           document.getElementById('message').innerHTML = 'Failed to parse transaction';
+           document.getElementById('message').hidden = false;
+         }
+         return false;
+       }
+ 
+       document.getElementById('decryptForm').addEventListener('click', decryptOutput);
+    </script></div><div class="container"><a class="twelve columns" href="/decrypt-zcash-as-code.html" style="text-align: right">Hiccup</a></div></body></html>
