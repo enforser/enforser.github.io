@@ -5,13 +5,20 @@
 * @param {string} ock
 * @returns {any}
 */
-export function greet(raw_tx: string, ock: string): any;
+export function parseock(raw_tx: string, ock: string): any;
+/**
+* @param {string} raw_tx
+* @param {string} ovk
+* @returns {any}
+*/
+export function findocks(raw_tx: string, ovk: string): any;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly greet: (a: number, b: number, c: number, d: number) => number;
+  readonly parseock: (a: number, b: number, c: number, d: number) => number;
+  readonly findocks: (a: number, b: number, c: number, d: number) => number;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
 }

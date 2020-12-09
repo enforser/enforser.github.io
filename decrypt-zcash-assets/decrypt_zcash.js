@@ -105,12 +105,26 @@ function takeObject(idx) {
 * @param {string} ock
 * @returns {any}
 */
-export function greet(raw_tx, ock) {
+export function parseock(raw_tx, ock) {
     var ptr0 = passStringToWasm0(raw_tx, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
     var len0 = WASM_VECTOR_LEN;
     var ptr1 = passStringToWasm0(ock, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
     var len1 = WASM_VECTOR_LEN;
-    var ret = wasm.greet(ptr0, len0, ptr1, len1);
+    var ret = wasm.parseock(ptr0, len0, ptr1, len1);
+    return takeObject(ret);
+}
+
+/**
+* @param {string} raw_tx
+* @param {string} ovk
+* @returns {any}
+*/
+export function findocks(raw_tx, ovk) {
+    var ptr0 = passStringToWasm0(raw_tx, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    var len0 = WASM_VECTOR_LEN;
+    var ptr1 = passStringToWasm0(ovk, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    var len1 = WASM_VECTOR_LEN;
+    var ret = wasm.findocks(ptr0, len0, ptr1, len1);
     return takeObject(ret);
 }
 
